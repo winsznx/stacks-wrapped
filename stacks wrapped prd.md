@@ -1,4 +1,4 @@
-# PRD: Stacks Wrapped — The Commit Farmer
+# PRD: Stacks Wrapped
 **Version:** 1.0  
 **Author:** Winszn / SolidWorks  
 **Target:** Coding Agent  

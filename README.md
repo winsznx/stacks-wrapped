@@ -1,4 +1,4 @@
-# Stacks Wrapped — The Commit Farmer
+# Stacks Wrapped
 
 Your on-chain story, committed to the chain.
 
