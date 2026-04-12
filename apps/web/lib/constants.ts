@@ -1,0 +1,7 @@
+export const HIRO_API_BASE = process.env.NEXT_PUBLIC_HIRO_API_BASE!;
+export const CONTRACT_DEPLOYER = process.env.NEXT_PUBLIC_CONTRACT_DEPLOYER!;
+export const CONTRACT_NAME = process.env.NEXT_PUBLIC_CONTRACT_NAME!;
+export const CONTRACT_IDENTIFIER = `${CONTRACT_DEPLOYER}.${CONTRACT_NAME}`;
+export const STACKS_NETWORK = process.env.NEXT_PUBLIC_NETWORK!;
+export const TX_FETCH_LIMIT = 50;
+export const TX_MAX_PAGES = 10;
