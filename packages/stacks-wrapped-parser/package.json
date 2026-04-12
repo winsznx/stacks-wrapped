@@ -1,0 +1,14 @@
+{
+  "name": "@winsznx/stacks-wrapped-parser",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
