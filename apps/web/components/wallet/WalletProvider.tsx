@@ -50,7 +50,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     showConnect({
       appDetails: {
         name: "Stacks Wrapped",
-        icon: "/favicon.ico",
+        icon: "/logo.svg",
       },
       onFinish: () => {
         const userData = userSession.loadUserData();
