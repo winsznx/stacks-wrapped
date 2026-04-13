@@ -15,7 +15,7 @@
       ]
     },
     {
-      "source": "/(icon|apple-icon)(.*)",
+      "source": "/logo.svg",
       "headers": [
         {
           "key": "Cache-Control",
