@@ -23,6 +23,10 @@ export const metadata: Metadata = {
     description: "Your on-chain story, committed to the chain.",
     images: [`${appUrl}/api/og`],
   },
+  icons: {
+    icon: "/logo.svg",
+    apple: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
