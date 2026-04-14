@@ -532,6 +532,7 @@ a:hover {
 
 .overlay-text {
   font-family: var(--font-display);
+  max-width: 320px;
   font-size: 1rem;
   color: var(--neon-green);
   text-align: center;
