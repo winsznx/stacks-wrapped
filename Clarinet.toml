@@ -1,6 +1,6 @@
 [project]
 name = "stacks-wrapped"
-description = "On-chain participation registry for Stacks Wrapped"
+description = "On-chain Wrapped card participation registry for Stacks"
 authors = []
 telemetry = false
 cache_dir = "./.cache"
