@@ -16,7 +16,7 @@ export function computeFavoriteContract(txs: RawTransaction[]): string {
   let maxId = "";
   let maxCount = 0;
   for (const [id, count] of counts) {
-    if (count > maxCount) {
+    if (count > maxCount || (count === maxCount && id < maxId)) {
       maxId = id;
       maxCount = count;
     }
