@@ -23,7 +23,7 @@ export async function getTotalWrapped(): Promise<number> {
     return Number(cvToValue(result.value));
   }
 
-  return 0;
+  throw new Error("Unexpected response from get-total-wrapped");
 }
 
 export async function hasClaimed(address: string): Promise<boolean> {
@@ -40,5 +40,5 @@ export async function hasClaimed(address: string): Promise<boolean> {
     return Boolean(cvToValue(result.value));
   }
 
-  return false;
+  throw new Error("Unexpected response from has-claimed");
 }
