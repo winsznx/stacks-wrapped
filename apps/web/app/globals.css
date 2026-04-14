@@ -284,6 +284,7 @@ a:hover {
 
 .address-text-input:focus {
   border-color: var(--neon-green);
+  box-shadow: 0 0 0 1px var(--neon-green);
 }
 
 .address-text-input::placeholder {
