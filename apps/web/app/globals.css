@@ -767,3 +767,19 @@ a:hover {
 .counter-loading {
   animation: pulse 2s ease-in-out infinite;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .terminal-cursor,
+  .spinner,
+  .counter-loading {
+    animation: none;
+  }
+
+  .btn {
+    transition: none;
+  }
+}
