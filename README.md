@@ -25,7 +25,7 @@ A public leaderboard reads directly from the contract to show total cards genera
 |---|---|
 | Frontend | Next.js 14 (App Router), React 18, TypeScript |
 | Styling | CSS with brutalist hard-shadow design system |
-| Smart Contract | Clarity (Stacks Mainnet) |
+| Smart Contract | Clarity 5 (Stacks Mainnet, Epoch 3.4) |
 | Wallet | @stacks/connect (Leather, Xverse) |
 | API | Hiro REST API |
 | Card Export | html2canvas |
