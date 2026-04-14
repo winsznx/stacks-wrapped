@@ -2,10 +2,12 @@ import { ImageResponse } from "@vercel/og";
 
 export const runtime = "edge";
 
+const fontPromise = fetch(
+  "https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff"
+).then((res) => res.arrayBuffer());
+
 export async function GET() {
-  const fontData = await fetch(
-    "https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff"
-  ).then((res) => res.arrayBuffer());
+  const fontData = await fontPromise;
 
   return new ImageResponse(
     (
@@ -22,7 +24,6 @@ export async function GET() {
           position: "relative",
         }}
       >
-        {/* Scanline overlay */}
         <div
           style={{
             position: "absolute",
@@ -36,7 +37,6 @@ export async function GET() {
           }}
         />
 
-        {/* Border glow */}
         <div
           style={{
             position: "absolute",
@@ -50,7 +50,6 @@ export async function GET() {
           }}
         />
 
-        {/* Terminal prompt */}
         <div
           style={{
             display: "flex",
@@ -62,7 +61,6 @@ export async function GET() {
           <span style={{ color: "#00ff94", fontSize: 28 }}>&gt;_</span>
         </div>
 
-        {/* Title */}
         <div
           style={{
             display: "flex",
@@ -94,7 +92,6 @@ export async function GET() {
           </span>
         </div>
 
-        {/* Bottom accent line */}
         <div
           style={{
             position: "absolute",
