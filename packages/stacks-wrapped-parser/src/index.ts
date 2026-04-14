@@ -1,5 +1,5 @@
 export { RawTransaction, WrappedStats } from "./types";
-export { microToSTX } from "./utils/microToSTX";
+export { microToSTX, formatSTX } from "./utils/microToSTX";
 export { computeTotalTransactions } from "./parsers/computeTotalTransactions";
 export { computeTotalFeesPaid } from "./parsers/computeTotalFeesPaid";
 export { computeFirstTransactionDate } from "./parsers/computeFirstTransactionDate";
