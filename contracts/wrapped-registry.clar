@@ -2,6 +2,9 @@
 ;; Stacks Wrapped - on-chain participation registry
 ;; Network: Mainnet
 
+(define-constant ERR_ALREADY_CLAIMED (err u100))
+(define-constant ERR_NOT_FOUND (err u404))
+
 (define-data-var total-wrapped-generated uint u0)
 
 (define-map wrapped-claimers
@@ -11,7 +14,7 @@
 
 (define-public (claim-wrapped-card)
   (let ((caller tx-sender))
-    (asserts! (is-none (map-get? wrapped-claimers caller)) (err u100))
+    (asserts! (is-none (map-get? wrapped-claimers caller)) ERR_ALREADY_CLAIMED)
     (map-set wrapped-claimers caller { claimed-at-block: stacks-block-height })
     (var-set total-wrapped-generated (+ (var-get total-wrapped-generated) u1))
     (ok true)
@@ -29,6 +32,6 @@
 (define-read-only (get-claim-info (user principal))
   (match (map-get? wrapped-claimers user)
     entry (ok entry)
-    (err u404)
+    ERR_NOT_FOUND
   )
 )
