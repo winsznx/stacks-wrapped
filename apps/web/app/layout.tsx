@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { WalletProvider } from "@/components/wallet/WalletProvider";
 import "./globals.css";
 
-import { APP_URL } from "@/lib/constants";
-const appUrl = APP_URL;
+const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://stacks-wrapped.xyz";
 
 export const metadata: Metadata = {
   title: "Stacks Wrapped",
@@ -12,20 +11,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Stacks Wrapped",
     description: "Your on-chain story, committed to the chain.",
-  metadataBase: new URL(appUrl),
     url: appUrl,
     siteName: "Stacks Wrapped",
-    images: [
-      { url: `${appUrl}/api/og`, width: 1200, height: 630 },
-    ],
+    images: [{ url: "/api/og", width: 1200, height: 630 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Stacks Wrapped",
     description: "Your on-chain story, committed to the chain.",
-  metadataBase: new URL(appUrl),
-    images: [`${appUrl}/api/og`],
+    images: ["/api/og"],
   },
   icons: {
     icon: "/logo.svg",
