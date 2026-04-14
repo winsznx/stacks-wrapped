@@ -9,7 +9,8 @@
     "lint": "turbo run lint",
     "publish:parser": "cd packages/stacks-wrapped-parser && pnpm publish --access public",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "check": "clarinet check"
   },
   "devDependencies": {
     "@stacks/clarinet-sdk": "^3.16.0",
