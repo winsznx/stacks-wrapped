@@ -2,13 +2,26 @@ import { RawTransaction } from "@winsznx/stacks-wrapped-parser";
 import { HIRO_API_BASE, TX_FETCH_LIMIT, TX_MAX_PAGES } from "./constants";
 
 export class HiroAPIError extends Error {
-  constructor(
-    public status: number,
-    message: string
-  ) {
+  status: number;
+
+  constructor(status: number, message: string) {
     super(message);
     this.name = "HiroAPIError";
+    this.status = status;
   }
+}
+
+interface V2TransactionResult {
+  tx: RawTransaction;
+  stx_sent: string;
+  stx_received: string;
+}
+
+interface V2TransactionsResponse {
+  limit: number;
+  offset: number;
+  total: number;
+  results: V2TransactionResult[];
 }
 
 export async function fetchAllTransactions(
@@ -18,7 +31,7 @@ export async function fetchAllTransactions(
 
   for (let page = 0; page < TX_MAX_PAGES; page++) {
     const offset = page * TX_FETCH_LIMIT;
-    const url = `${HIRO_API_BASE}/extended/v1/address/${address}/transactions?limit=${TX_FETCH_LIMIT}&offset=${offset}`;
+    const url = `${HIRO_API_BASE}/extended/v2/addresses/${address}/transactions?limit=${TX_FETCH_LIMIT}&offset=${offset}`;
 
     const response = await fetch(url);
 
@@ -29,11 +42,11 @@ export async function fetchAllTransactions(
       );
     }
 
-    const data = await response.json();
-    const results: RawTransaction[] = data.results ?? [];
-    allTransactions.push(...results);
+    const data: V2TransactionsResponse = await response.json();
+    const txs = data.results.map((entry) => entry.tx);
+    allTransactions.push(...txs);
 
-    if (results.length < TX_FETCH_LIMIT) {
+    if (data.results.length < TX_FETCH_LIMIT) {
       break;
     }
   }
