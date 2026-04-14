@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { WrappedPageContent } from "@/components/wrapped/WrappedPageContent";
 
-import { APP_URL } from "@/lib/constants";
-const appUrl = APP_URL;
+const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://stacks-wrapped.xyz";
 
 export const metadata: Metadata = {
   title: "Generate Your Wrapped — Stacks Wrapped",
