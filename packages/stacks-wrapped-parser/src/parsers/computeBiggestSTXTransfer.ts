@@ -8,9 +8,10 @@ export function computeBiggestSTXTransfer(txs: RawTransaction[]): number {
 
   if (transfers.length === 0) return 0;
 
-  const maxAmount = Math.max(
-    ...transfers.map((tx) => Number(tx.token_transfer!.amount))
-  );
+  const amounts = transfers.map((tx) => Number(tx.token_transfer!.amount));
+  const validAmounts = amounts.filter((a) => !isNaN(a) && isFinite(a));
 
-  return microToSTX(maxAmount);
+  if (validAmounts.length === 0) return 0;
+
+  return microToSTX(Math.max(...validAmounts));
 }
