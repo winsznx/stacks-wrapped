@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { getTotalWrapped } from "@/lib/contract-reads";
-import { HIRO_API_BASE, CONTRACT_IDENTIFIER } from "@/lib/constants";
+import { HIRO_API_BASE, CONTRACT_IDENTIFIER, LEADERBOARD_POLL_INTERVAL, LEADERBOARD_EVENT_LIMIT } from "@/lib/constants";
 
 interface RecentClaimer {
   address: string;
@@ -39,7 +39,7 @@ export function useLeaderboard(): UseLeaderboardReturn {
       const [total, eventsResponse, tipResponse] = await Promise.all([
         getTotalWrapped(),
         fetch(
-          `${HIRO_API_BASE}/extended/v1/contract/${CONTRACT_IDENTIFIER}/events?limit=20`
+          `${HIRO_API_BASE}/extended/v1/contract/${CONTRACT_IDENTIFIER}/events?limit=${LEADERBOARD_EVENT_LIMIT}`
         ),
         fetch(`${HIRO_API_BASE}/extended/v2/blocks?limit=1`),
       ]);
@@ -106,7 +106,7 @@ export function useLeaderboard(): UseLeaderboardReturn {
   useEffect(() => {
     fetchLeaderboard();
 
-    const interval = setInterval(fetchLeaderboard, 30_000);
+    const interval = setInterval(fetchLeaderboard, LEADERBOARD_POLL_INTERVAL);
     return () => clearInterval(interval);
   }, [fetchLeaderboard]);
 
