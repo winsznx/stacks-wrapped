@@ -36,6 +36,7 @@ export function ClaimButton({ onClaimed }: ClaimButtonProps) {
       onClick={handleClaim}
       disabled={isPending}
       className="btn btn-primary btn-lg"
+      aria-label="Claim your Wrapped card on-chain"
     >
       {isPending ? (
         <span className="claim-loading">
