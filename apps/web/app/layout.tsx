@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { WalletProvider } from "@/components/wallet/WalletProvider";
 import "./globals.css";
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://stacks-wrapped.xyz";
+const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://stacks-wrapped-web.vercel.app";
 
 export const metadata: Metadata = {
   title: "Stacks Wrapped",
