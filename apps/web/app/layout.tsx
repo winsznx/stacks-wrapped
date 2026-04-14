@@ -8,9 +8,11 @@ const appUrl = APP_URL;
 export const metadata: Metadata = {
   title: "Stacks Wrapped",
   description: "Your on-chain story, committed to the chain.",
+  metadataBase: new URL(appUrl),
   openGraph: {
     title: "Stacks Wrapped",
     description: "Your on-chain story, committed to the chain.",
+  metadataBase: new URL(appUrl),
     url: appUrl,
     siteName: "Stacks Wrapped",
     images: [
@@ -22,6 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Stacks Wrapped",
     description: "Your on-chain story, committed to the chain.",
+  metadataBase: new URL(appUrl),
     images: [`${appUrl}/api/og`],
   },
   icons: {
