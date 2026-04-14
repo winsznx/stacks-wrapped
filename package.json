@@ -7,7 +7,9 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "publish:parser": "cd packages/stacks-wrapped-parser && pnpm publish --access public"
+    "publish:parser": "cd packages/stacks-wrapped-parser && pnpm publish --access public",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "@stacks/clarinet-sdk": "^3.16.0",
