@@ -10,7 +10,9 @@ interface WrappedCardProps {
 
 function formatDate(isoDate: string): string {
   if (isoDate === "N/A") return "N/A";
-  return new Date(isoDate).toLocaleDateString("en-US", {
+  const date = new Date(isoDate);
+  if (isNaN(date.getTime())) return "N/A";
+  return date.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
