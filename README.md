@@ -104,6 +104,14 @@ pnpm dev
 pnpm build
 ```
 
+### Test
+
+```bash
+pnpm test
+```
+
+Runs Clarity contract unit tests via Clarinet SDK and vitest.
+
 ---
 
 ## Smart Contract
