@@ -3,12 +3,28 @@
   "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
     "typescript": "^5.0.0"
-  }
+  },
+  "description": "Parse and compute Stacks on-chain transaction statistics",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/winsznx/stacks-wrapped.git",
+    "directory": "packages/stacks-wrapped-parser"
+  },
+  "keywords": [
+    "stacks",
+    "blockchain",
+    "transactions",
+    "parser",
+    "stats"
+  ]
 }
