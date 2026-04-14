@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ["@winsznx/stacks-wrapped-parser"],
+  poweredByHeader: false,
   webpack: (config) => {
     config.resolve.fallback = {
       ...config.resolve.fallback,
