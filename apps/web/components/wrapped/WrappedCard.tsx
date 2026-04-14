@@ -72,7 +72,7 @@ export function WrappedCard({ stats, address }: WrappedCardProps) {
       <div className="wrapped-card-divider" />
 
       <div className="wrapped-card-footer">
-        <span>stacks-wrapped.xyz</span>
+        <span>stacks-wrapped-web.vercel.app</span>
         <span>#StacksWrapped</span>
       </div>
     </div>
