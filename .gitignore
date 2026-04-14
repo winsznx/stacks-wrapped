@@ -7,3 +7,8 @@ dist/
 .claude/
 .cache/
 node_modules
+*.log
+.DS_Store
+.env
+.env.production
+.vercel
