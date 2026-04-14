@@ -99,7 +99,7 @@ function WrappedPageInner() {
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `stacks-wrapped-${address.slice(0, 8)}.png`;
+      link.download = `stacks-wrapped-${address.slice(0, 10)}.png`;
       link.click();
       URL.revokeObjectURL(url);
     } catch (err) {
