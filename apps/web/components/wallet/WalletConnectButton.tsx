@@ -1,10 +1,7 @@
 "use client";
 
 import { useWallet } from "./WalletProvider";
-
-function truncateAddress(address: string): string {
-  return `${address.slice(0, 6)}...${address.slice(-4)}`;
-}
+import { truncateAddress } from "@/lib/format";
 
 export function WalletConnectButton() {
   const { isConnected, userAddress, connectWallet, disconnectWallet } =
