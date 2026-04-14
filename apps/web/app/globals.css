@@ -175,6 +175,10 @@ a:hover {
   width: 100%;
 }
 
+.hero-explainer {
+  padding: 1rem 0;
+}
+
 .hero-explainer ul {
   list-style: none;
   padding: 0;
