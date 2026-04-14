@@ -102,7 +102,7 @@ export async function GET() {
           }}
         >
           <span style={{ color: "#7b61ff", fontSize: 16 }}>
-            stacks-wrapped.xyz
+            stacks-wrapped-web.vercel.app
           </span>
           <span style={{ color: "#5a5a7a", fontSize: 16 }}>|</span>
           <span style={{ color: "#00ff94", fontSize: 16 }}>
