@@ -323,6 +323,7 @@ a:hover {
 
 .terminal-prompt {
   color: var(--neon-green);
+  user-select: none;
 }
 
 .terminal-active {
