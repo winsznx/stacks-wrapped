@@ -41,6 +41,7 @@ html {
 
 body {
   background-color: var(--bg);
+  overflow-x: hidden;
   color: var(--text-primary);
   font-family: var(--font-body);
   min-height: 100vh;
