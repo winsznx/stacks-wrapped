@@ -49,7 +49,7 @@ export function StatsLoader({ isLoading, error }: StatsLoaderProps) {
     <div className="stats-loader">
       <div className="stats-loader-terminal">
         {LOADING_STEPS.slice(0, currentStep + 1).map((step, i) => (
-          <div key={i} className="terminal-line">
+          <div key={step} className="terminal-line">
             <span className="terminal-prompt">&gt;</span>
             <span
               className={
