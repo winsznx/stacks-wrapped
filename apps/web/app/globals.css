@@ -728,6 +728,16 @@ a:hover {
    ========================================= */
 
 @media (max-width: 860px) {
+  .leaderboard-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .leaderboard-table {
+    font-size: 0.75rem;
+  }
+
   .wrapped-card {
     width: 100%;
     height: auto;
