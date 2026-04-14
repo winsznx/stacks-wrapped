@@ -636,6 +636,10 @@ a:hover {
   opacity: 0.5;
 }
 
+.counter-value {
+  transition: opacity 0.3s ease;
+}
+
 .global-counter-label {
   font-family: var(--font-body);
   font-size: 1rem;
