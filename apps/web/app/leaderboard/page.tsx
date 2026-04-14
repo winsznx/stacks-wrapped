@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { LeaderboardPageContent } from "@/components/leaderboard/LeaderboardPageContent";
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://stacks-wrapped.xyz";
+import { APP_URL } from "@/lib/constants";
+const appUrl = APP_URL;
 
 export const metadata: Metadata = {
   title: "Leaderboard — Stacks Wrapped",
