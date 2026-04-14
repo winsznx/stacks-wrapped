@@ -62,14 +62,7 @@ export function useLeaderboard(): UseLeaderboardReturn {
       const events = eventsData.results ?? [];
 
       const claimers: RecentClaimer[] = events
-        .filter(
-          (event: { event_type: string; contract_log?: { value?: { repr?: string } } }) =>
-            event.event_type === "smart_contract_log" ||
-            event.event_type === "stx_lock" ||
-            event.event_type === "stx_asset" ||
-            true
-        )
-        .slice(0, 20)
+        .slice(0, LEADERBOARD_EVENT_LIMIT)
         .map(
           (event: {
             tx_id: string;
