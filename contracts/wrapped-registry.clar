@@ -1,5 +1,5 @@
 ;; wrapped-registry.clar
-;; Stacks Wrapped — on-chain participation registry
+;; Stacks Wrapped - on-chain participation registry
 ;; Network: Mainnet
 
 (define-data-var total-wrapped-generated uint u0)
@@ -12,7 +12,7 @@
 (define-public (claim-wrapped-card)
   (let ((caller tx-sender))
     (asserts! (is-none (map-get? wrapped-claimers caller)) (err u100))
-    (map-set wrapped-claimers caller { claimed-at-block: block-height })
+    (map-set wrapped-claimers caller { claimed-at-block: stacks-block-height })
     (var-set total-wrapped-generated (+ (var-get total-wrapped-generated) u1))
     (ok true)
   )
