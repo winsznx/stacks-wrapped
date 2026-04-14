@@ -16,25 +16,35 @@ export function useWrappedStats(address: string): UseWrappedStatsReturn {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const lastFetchedAddress = useRef<string>("");
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const fetchStats = useCallback(async () => {
     if (!address) return;
+
+    abortControllerRef.current?.abort();
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
 
     setIsLoading(true);
     setError(null);
 
     try {
-      const txs = await fetchAllTransactions(address);
-      const computed = computeWrappedStats(txs);
-      setStats(computed);
-      lastFetchedAddress.current = address;
+      const txs = await fetchAllTransactions(address, controller.signal);
+      if (!controller.signal.aborted) {
+        const computed = computeWrappedStats(txs);
+        setStats(computed);
+        lastFetchedAddress.current = address;
+      }
     } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return;
       const message =
         err instanceof Error ? err.message : "Failed to fetch transaction data";
       setError(message);
       setStats(null);
     } finally {
-      setIsLoading(false);
+      if (!controller.signal.aborted) {
+        setIsLoading(false);
+      }
     }
   }, [address]);
 
@@ -42,6 +52,7 @@ export function useWrappedStats(address: string): UseWrappedStatsReturn {
     if (address && address !== lastFetchedAddress.current) {
       fetchStats();
     }
+    return () => abortControllerRef.current?.abort();
   }, [address, fetchStats]);
 
   return { stats, isLoading, error, refetch: fetchStats };
