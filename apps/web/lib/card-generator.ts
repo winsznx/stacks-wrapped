@@ -1,3 +1,22 @@
+function drawRoundedRect(
+  ctx: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  radius: number
+): void {
+  ctx.beginPath();
+  ctx.moveTo(radius, 0);
+  ctx.lineTo(width - radius, 0);
+  ctx.quadraticCurveTo(width, 0, width, radius);
+  ctx.lineTo(width, height - radius);
+  ctx.quadraticCurveTo(width, height, width - radius, height);
+  ctx.lineTo(radius, height);
+  ctx.quadraticCurveTo(0, height, 0, height - radius);
+  ctx.lineTo(0, radius);
+  ctx.quadraticCurveTo(0, 0, radius, 0);
+  ctx.closePath();
+}
+
 export async function generateWrappedCardPNG(
   elementId: string
 ): Promise<Blob> {
@@ -18,29 +37,9 @@ export async function generateWrappedCardPNG(
   roundedCanvas.width = canvas.width;
   roundedCanvas.height = canvas.height;
   const ctx = roundedCanvas.getContext("2d")!;
-  const radius = 48; // 24px * scale(2)
+  const radius = 48;
 
-  ctx.beginPath();
-  ctx.moveTo(radius, 0);
-  ctx.lineTo(roundedCanvas.width - radius, 0);
-  ctx.quadraticCurveTo(roundedCanvas.width, 0, roundedCanvas.width, radius);
-  ctx.lineTo(roundedCanvas.width, roundedCanvas.height - radius);
-  ctx.quadraticCurveTo(
-    roundedCanvas.width,
-    roundedCanvas.height,
-    roundedCanvas.width - radius,
-    roundedCanvas.height
-  );
-  ctx.lineTo(radius, roundedCanvas.height);
-  ctx.quadraticCurveTo(
-    0,
-    roundedCanvas.height,
-    0,
-    roundedCanvas.height - radius
-  );
-  ctx.lineTo(0, radius);
-  ctx.quadraticCurveTo(0, 0, radius, 0);
-  ctx.closePath();
+  drawRoundedRect(ctx, roundedCanvas.width, roundedCanvas.height, radius);
   ctx.clip();
   ctx.drawImage(canvas, 0, 0);
 
