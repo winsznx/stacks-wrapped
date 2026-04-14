@@ -27,7 +27,7 @@ A public leaderboard reads directly from the contract to show total cards genera
 | Styling | CSS with brutalist hard-shadow design system |
 | Smart Contract | Clarity 5 (Stacks Mainnet, Epoch 3.4) |
 | Wallet | @stacks/connect (Leather, Xverse) |
-| API | Hiro REST API |
+| API | Hiro REST API v2 |
 | Card Export | html2canvas |
 | OG Images | @vercel/og (Edge) |
 | Monorepo | pnpm workspaces, Turborepo |
