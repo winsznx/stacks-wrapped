@@ -669,6 +669,10 @@ a:hover {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.leaderboard-table tbody tr:hover {
+  background: rgba(0, 255, 148, 0.03);
+}
+
 .leaderboard-rank {
   color: var(--text-muted);
 }
