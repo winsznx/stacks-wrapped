@@ -110,7 +110,7 @@ function WrappedPageInner() {
   function handleShareOnX() {
     if (!stats) return;
     const text = encodeURIComponent(
-      `Just generated my Stacks Wrapped! 🔗 [${stats.totalTransactions} txs | ${stats.totalFeesPaidSTX.toFixed(2)} STX fees | since ${new Date(stats.firstTransactionDate).toLocaleDateString()}] — claim yours at stacks-wrapped.xyz #StacksWrapped`
+      `Just generated my Stacks Wrapped! 🔗 [${stats.totalTransactions} txs | ${stats.totalFeesPaidSTX.toFixed(2)} STX fees | since ${new Date(stats.firstTransactionDate).toLocaleDateString()}] — claim yours at stacks-wrapped-web.vercel.app #StacksWrapped`
     );
     window.open(`https://x.com/intent/tweet?text=${text}`, "_blank", "noopener,noreferrer");
   }
