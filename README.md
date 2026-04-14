@@ -145,7 +145,7 @@ const stats = computeWrappedStats(transactions);
 // { totalTransactions, totalFeesPaidSTX, firstTransactionDate, favoriteContract, biggestSTXTransferSTX }
 ```
 
-Individual parsers and the `microToSTX` utility are also exported.
+Individual parsers, `formatSTX`, and the `microToSTX` utility are also exported.
 
 ---
 
