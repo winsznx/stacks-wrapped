@@ -1,19 +1,11 @@
 "use client";
 
 import { WrappedStats } from "@winsznx/stacks-wrapped-parser";
+import { truncateAddress, truncateContract } from "@/lib/format";
 
 interface WrappedCardProps {
   stats: WrappedStats;
   address: string;
-}
-
-function truncateAddress(address: string): string {
-  return `${address.slice(0, 6)}...${address.slice(-4)}`;
-}
-
-function truncateContract(contractId: string, maxLen: number = 28): string {
-  if (contractId.length <= maxLen) return contractId;
-  return contractId.slice(0, maxLen) + "...";
 }
 
 function formatDate(isoDate: string): string {
