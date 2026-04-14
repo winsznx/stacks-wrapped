@@ -14,9 +14,9 @@ export function AddressInput({ onSubmit }: AddressInputProps) {
 
   function handlePreview() {
     const address = manualAddress.trim();
-    if (address) {
-      onSubmit(address);
-    }
+    if (!address) return;
+    if (!address.startsWith("SP") && !address.startsWith("SM")) return;
+    onSubmit(address);
   }
 
   function handleWalletSubmit() {
