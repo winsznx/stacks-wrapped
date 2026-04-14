@@ -5,4 +5,5 @@ dist/
 .turbo/
 *.tsbuildinfo
 .claude/
+.cache/
 node_modules
