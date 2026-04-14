@@ -3,11 +3,11 @@ import { RawTransaction } from "../types";
 export function computeFirstTransactionDate(txs: RawTransaction[]): string {
   if (txs.length === 0) return "N/A";
 
-  const earliest = txs.reduce((oldest, tx) => {
-    const txTime = new Date(tx.burn_block_time_iso).getTime();
-    const oldestTime = new Date(oldest.burn_block_time_iso).getTime();
-    return txTime < oldestTime ? tx : oldest;
-  });
+  const sorted = [...txs].sort(
+    (a, b) =>
+      new Date(a.burn_block_time_iso).getTime() -
+      new Date(b.burn_block_time_iso).getTime()
+  );
 
-  return earliest.burn_block_time_iso;
+  return sorted[0].burn_block_time_iso;
 }
