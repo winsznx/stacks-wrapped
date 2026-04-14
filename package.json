@@ -1,6 +1,7 @@
 {
   "name": "stacks-wrapped",
   "private": true,
+  "type": "module",
   "packageManager": "pnpm@10.33.0",
   "scripts": {
     "dev": "turbo run dev",
@@ -9,6 +10,10 @@
     "publish:parser": "cd packages/stacks-wrapped-parser && pnpm publish --access public"
   },
   "devDependencies": {
-    "turbo": "^2.9.6"
+    "@stacks/clarinet-sdk": "^3.16.0",
+    "@stacks/transactions": "^6.17.0",
+    "turbo": "^2.9.6",
+    "vitest": "^4.1.4",
+    "vitest-environment-clarinet": "^3.0.2"
   }
 }
