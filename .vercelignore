@@ -1,5 +1,10 @@
 contracts/
 *.clar
 *.md
+tests/
+vitest.config.ts
+tsconfig.clarinet.json
+Clarinet.toml
+settings/
 .env.local
 .env.example
