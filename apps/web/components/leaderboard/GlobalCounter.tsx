@@ -12,7 +12,7 @@ export function GlobalCounter({ total, isLoading }: GlobalCounterProps) {
         {isLoading ? (
           <span className="counter-loading">---</span>
         ) : (
-          <span className="counter-value">{total ?? 0}</span>
+          <span className="counter-value">{(total ?? 0).toLocaleString()}</span>
         )}
       </div>
       <p className="global-counter-label">Wrapped Cards Generated On-Chain</p>
