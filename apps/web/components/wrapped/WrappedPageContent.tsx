@@ -112,7 +112,7 @@ function WrappedPageInner() {
     const text = encodeURIComponent(
       `Just generated my Stacks Wrapped! 🔗 [${stats.totalTransactions} txs | ${stats.totalFeesPaidSTX.toFixed(2)} STX fees | since ${new Date(stats.firstTransactionDate).toLocaleDateString()}] — claim yours at stacks-wrapped.xyz #StacksWrapped`
     );
-    window.open(`https://x.com/intent/tweet?text=${text}`, "_blank");
+    window.open(`https://x.com/intent/tweet?text=${text}`, "_blank", "noopener,noreferrer");
   }
 
   if (pageState === "input") {
