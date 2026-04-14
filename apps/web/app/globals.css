@@ -477,7 +477,10 @@ a:hover {
 .stat-value-contract {
   font-size: 1rem;
   color: var(--neon-violet);
-  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 350px;
 }
 
 .stat-value-accent {
