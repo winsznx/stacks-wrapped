@@ -25,7 +25,8 @@ interface V2TransactionsResponse {
 }
 
 export async function fetchAllTransactions(
-  address: string
+  address: string,
+  signal?: AbortSignal
 ): Promise<RawTransaction[]> {
   const allTransactions: RawTransaction[] = [];
 
@@ -33,7 +34,7 @@ export async function fetchAllTransactions(
     const offset = page * TX_FETCH_LIMIT;
     const url = `${HIRO_API_BASE}/extended/v2/addresses/${address}/transactions?limit=${TX_FETCH_LIMIT}&offset=${offset}`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, { signal });
 
     if (!response.ok) {
       throw new HiroAPIError(
