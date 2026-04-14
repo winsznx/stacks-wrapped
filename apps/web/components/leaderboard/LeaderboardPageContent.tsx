@@ -20,7 +20,11 @@ export function LeaderboardPageContent() {
 
       <GlobalCounter total={totalGenerated} isLoading={isLoading} />
 
-      {error && <p className="leaderboard-error">{error}</p>}
+      {error && (
+        <div className="leaderboard-error-container">
+          <p className="leaderboard-error">{error}</p>
+        </div>
+      )}
 
       <section className="leaderboard-recent">
         <h2 className="leaderboard-section-title">Recent Claims</h2>
