@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useWallet } from "@/components/wallet/WalletProvider";
 import { WalletConnectButton } from "@/components/wallet/WalletConnectButton";
+import { isValidStacksAddress } from "@/lib/stacks-address";
 
 interface AddressInputProps {
   onSubmit: (address: string) => void;
@@ -14,12 +15,10 @@ export function AddressInput({ onSubmit }: AddressInputProps) {
 
   function handlePreview() {
     const address = manualAddress.trim();
-    if (!address) return;
-    if (!address.startsWith("SP") && !address.startsWith("SM")) return;
+    if (!isValidStacksAddress(address)) return;
     onSubmit(address);
   }
-
-  function handleWalletSubmit() {
+function handleWalletSubmit() {
     if (userAddress) {
       onSubmit(userAddress);
     }
