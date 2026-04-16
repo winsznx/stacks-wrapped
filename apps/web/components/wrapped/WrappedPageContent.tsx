@@ -12,6 +12,7 @@ import { useWallet } from "@/components/wallet/WalletProvider";
 import { useWrappedStats } from "@/hooks/useWrappedStats";
 import { hasClaimed } from "@/lib/contract-reads";
 import { generateWrappedCardPNG } from "@/lib/card-generator";
+import { buildShareText, buildTweetUrl } from "@/lib/share";
 import Link from "next/link";
 
 type WrappedState = "input" | "loading" | "preview" | "unlocked";
@@ -109,8 +110,10 @@ function WrappedPageInner() {
 
   function handleShareOnX() {
     if (!stats) return;
-    const text = encodeURIComponent(
-      `Just generated my Stacks Wrapped! 🔗 [${stats.totalTransactions} txs | ${stats.totalFeesPaidSTX.toFixed(2)} STX fees | since ${new Date(stats.firstTransactionDate).toLocaleDateString()}] — claim yours at stacks-wrapped-web.vercel.app #StacksWrapped`
+    const url = buildTweetUrl(buildShareText(stats));
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+txs | ${stats.totalFeesPaidSTX.toFixed(2)} STX fees | since ${new Date(stats.firstTransactionDate).toLocaleDateString()}] — claim yours at stacks-wrapped-web.vercel.app #StacksWrapped`
     );
     window.open(`https://x.com/intent/tweet?text=${text}`, "_blank", "noopener,noreferrer");
   }
