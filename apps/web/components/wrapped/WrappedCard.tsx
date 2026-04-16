@@ -9,17 +9,6 @@ interface WrappedCardProps {
   address: string;
 }
 
-function formatShortDate(isoDate: string): string {
-  if (isoDate === "N/A") return "N/A";
-  const date = new Date(isoDate);
-  if (isNaN(date.getTime())) return "N/A";
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
 export function WrappedCard({ stats, address }: WrappedCardProps) {
   return (
     <div id="wrapped-card" className="wrapped-card">
