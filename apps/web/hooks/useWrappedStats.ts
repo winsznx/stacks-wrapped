@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { WrappedStats, computeWrappedStats } from "@winsznx/stacks-wrapped-parser";
 import { fetchAllTransactions } from "@/lib/hiro-api";
+import { getErrorMessage, isAbortError } from "@/lib/errors";
 
 interface UseWrappedStatsReturn {
   stats: WrappedStats | null;
@@ -36,10 +37,8 @@ export function useWrappedStats(address: string): UseWrappedStatsReturn {
         lastFetchedAddress.current = address;
       }
     } catch (err) {
-      if (err instanceof DOMException && err.name === "AbortError") return;
-      const message =
-        err instanceof Error ? err.message : "Failed to fetch transaction data";
-      setError(message);
+      if (isAbortError(err)) return;
+      setError(getErrorMessage(err));
       setStats(null);
     } finally {
       if (!controller.signal.aborted) {
