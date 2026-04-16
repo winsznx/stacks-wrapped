@@ -2,13 +2,14 @@
 
 import { WrappedStats } from "@winsznx/stacks-wrapped-parser";
 import { truncateAddress, truncateContract } from "@/lib/format";
+import { formatShortDate } from "@/lib/date";
 
 interface WrappedCardProps {
   stats: WrappedStats;
   address: string;
 }
 
-function formatDate(isoDate: string): string {
+function formatShortDate(isoDate: string): string {
   if (isoDate === "N/A") return "N/A";
   const date = new Date(isoDate);
   if (isNaN(date.getTime())) return "N/A";
@@ -47,7 +48,7 @@ export function WrappedCard({ stats, address }: WrappedCardProps) {
         <div className="wrapped-card-stat">
           <span className="stat-label">FIRST TX DATE</span>
           <span className="stat-value stat-value-date">
-            {formatDate(stats.firstTransactionDate)}
+            {formatShortDate(stats.firstTransactionDate)}
           </span>
         </div>
       </div>
