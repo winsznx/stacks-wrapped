@@ -170,3 +170,30 @@ Individual parsers, `formatSTX`, and the `microToSTX` utility are also exported.
 ## License
 
 MIT
+
+
+## Project Modules
+
+```
+apps/web/
+  lib/           Shared utilities (cn, dates, errors, URL, share, time, format)
+  hooks/         Reusable React hooks (useDebounce, useInterval, useLocalStorage, ...)
+  components/
+    ui/          Primitive components (Button, Input, Card, Alert, Skeleton, ...)
+    wallet/      Wallet connect flow
+    wrapped/     Wrapped card experience
+    leaderboard/
+  app/           Next.js routes (pages, sitemap, manifest, robots, middleware)
+
+packages/stacks-wrapped-parser/
+  src/
+    parsers/     Statistic computations
+    guards/      Type guards (isContractCall, isTokenTransfer)
+    utils/       microToSTX, formatSTX, validateTransaction
+
+tests/
+  parser/        Parser and type guard unit tests
+  lib/           Library utility unit tests
+  wrapped-registry.test.ts  Clarity contract tests
+```
+
