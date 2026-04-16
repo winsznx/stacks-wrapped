@@ -113,10 +113,6 @@ function WrappedPageInner() {
     const url = buildTweetUrl(buildShareText(stats));
     window.open(url, "_blank", "noopener,noreferrer");
   }
-txs | ${stats.totalFeesPaidSTX.toFixed(2)} STX fees | since ${new Date(stats.firstTransactionDate).toLocaleDateString()}] — claim yours at stacks-wrapped-web.vercel.app #StacksWrapped`
-    );
-    window.open(`https://x.com/intent/tweet?text=${text}`, "_blank", "noopener,noreferrer");
-  }
 
   if (pageState === "input") {
     return (
