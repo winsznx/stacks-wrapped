@@ -18,7 +18,8 @@ export function AddressInput({ onSubmit }: AddressInputProps) {
     if (!isValidStacksAddress(address)) return;
     onSubmit(address);
   }
-function handleWalletSubmit() {
+
+  function handleWalletSubmit() {
     if (userAddress) {
       onSubmit(userAddress);
     }
