@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Skeleton } from "@/components/ui/Skeleton";
 
 interface RecentClaimer {
   address: string;
@@ -17,7 +18,9 @@ export function LeaderboardTable({ claimers, isLoading }: LeaderboardTableProps)
   if (isLoading) {
     return (
       <div className="leaderboard-table-loading">
-        <p>Loading recent claims...</p>
+        <Skeleton height={32} />
+        <Skeleton height={32} />
+        <Skeleton height={32} />
       </div>
     );
   }
