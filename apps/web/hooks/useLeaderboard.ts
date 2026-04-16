@@ -2,7 +2,14 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { getTotalWrapped } from "@/lib/contract-reads";
-import { HIRO_API_BASE, CONTRACT_IDENTIFIER, LEADERBOARD_POLL_INTERVAL, LEADERBOARD_EVENT_LIMIT } from "@/lib/constants";
+import {
+  HIRO_API_BASE,
+  CONTRACT_IDENTIFIER,
+  LEADERBOARD_POLL_INTERVAL,
+  LEADERBOARD_EVENT_LIMIT,
+} from "@/lib/constants";
+import { formatRelativeTime } from "@/lib/time";
+import { getErrorMessage } from "@/lib/errors";
 
 interface RecentClaimer {
   address: string;
@@ -15,17 +22,6 @@ interface UseLeaderboardReturn {
   recentClaimers: RecentClaimer[];
   isLoading: boolean;
   error: string | null;
-}
-
-function formatRelativeTime(blockHeight: number, currentBlockHeight: number): string {
-  const blockDiff = currentBlockHeight - blockHeight;
-  const minutesAgo = blockDiff * 10; // ~10 min per Stacks block
-
-  if (minutesAgo < 60) return `${Math.max(1, minutesAgo)} minutes ago`;
-  const hoursAgo = Math.floor(minutesAgo / 60);
-  if (hoursAgo < 24) return `${hoursAgo} hour${hoursAgo === 1 ? "" : "s"} ago`;
-  const daysAgo = Math.floor(hoursAgo / 24);
-  return `${daysAgo} day${daysAgo === 1 ? "" : "s"} ago`;
 }
 
 export function useLeaderboard(): UseLeaderboardReturn {
@@ -53,9 +49,7 @@ export function useLeaderboard(): UseLeaderboardReturn {
       }
 
       if (!eventsResponse.ok) {
-        throw new Error(
-          `Failed to fetch contract events: ${eventsResponse.status}`
-        );
+        throw new Error(`Failed to fetch contract events: ${eventsResponse.status}`);
       }
 
       const eventsData = await eventsResponse.json();
@@ -64,17 +58,13 @@ export function useLeaderboard(): UseLeaderboardReturn {
       const claimers: RecentClaimer[] = events
         .slice(0, LEADERBOARD_EVENT_LIMIT)
         .map(
-          (event: {
-            tx_id: string;
-            block_height?: number;
-            contract_log?: { value?: { repr?: string } };
-            stx_lock_event?: { locked_address?: string };
-          }) => {
+          (event: { tx_id: string; block_height?: number }) => {
             const blockHeight = event.block_height ?? 0;
+            const shortId = event.tx_id
+              ? `${event.tx_id.slice(0, 6)}...${event.tx_id.slice(-4)}`
+              : "Unknown";
             return {
-              address: event.tx_id
-                ? event.tx_id.slice(0, 6) + "..." + event.tx_id.slice(-4)
-                : "Unknown",
+              address: shortId,
               blockHeight,
               relativeTime: currentBlockHeight
                 ? formatRelativeTime(blockHeight, currentBlockHeight)
@@ -86,11 +76,7 @@ export function useLeaderboard(): UseLeaderboardReturn {
       setRecentClaimers(claimers);
       setError(null);
     } catch (err) {
-      const message =
-        err instanceof Error
-          ? err.message
-          : "Failed to fetch leaderboard data";
-      setError(message);
+      setError(getErrorMessage(err));
     } finally {
       setIsLoading(false);
     }
@@ -98,7 +84,6 @@ export function useLeaderboard(): UseLeaderboardReturn {
 
   useEffect(() => {
     fetchLeaderboard();
-
     const interval = setInterval(fetchLeaderboard, LEADERBOARD_POLL_INTERVAL);
     return () => clearInterval(interval);
   }, [fetchLeaderboard]);
