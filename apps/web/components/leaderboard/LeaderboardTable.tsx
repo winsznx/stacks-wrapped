@@ -39,7 +39,7 @@ export function LeaderboardTable({ claimers, isLoading }: LeaderboardTableProps)
         <thead>
           <tr>
             <th>#</th>
-            <th>Address</th>
+            <th className="text-left py-3 px-4 text-xs font-medium text-white/50 uppercase hidden sm:table-cell">Address</th>
             <th>Block</th>
             <th>When</th>
           </tr>
