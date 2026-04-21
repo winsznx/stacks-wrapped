@@ -1,25 +1,30 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, forwardRef } from "react";
 import { cn } from "@/lib/cn";
 
-type AlertTone = "info" | "success" | "warning" | "error";
-
 export interface AlertProps extends HTMLAttributes<HTMLDivElement> {
-  tone?: AlertTone;
+  variant?: "info" | "warning" | "error";
 }
 
-const TONE_CLASS: Record<AlertTone, string> = {
-  info: "alert-info",
-  success: "alert-success",
-  warning: "alert-warning",
-  error: "alert-error",
-};
+export const Alert = forwardRef<HTMLDivElement, AlertProps>(
+  ({ className, variant = "info", children, ...rest }, ref) => {
+    return (
+      <div
+        ref={ref}
+        role="alert"
+        aria-live="polite"
+        className={cn(
+          "rounded-lg p-4 text-sm flex gap-3 items-start border",
+          variant === "info" && "bg-blue-500/10 text-blue-400 border-blue-500/20",
+          variant === "warning" && "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
+          variant === "error" && "bg-red-500/10 text-red-400 border-red-500/20",
+          className
+        )}
+        {...rest}
+      >
+        {children}
+      </div>
+    );
+  }
+);
 
-export function Alert({ tone = "info", className, ...rest }: AlertProps) {
-  return (
-    <div
-      role="alert"
-      className={cn("alert", TONE_CLASS[tone], className)}
-      {...rest}
-    />
-  );
-}
+Alert.displayName = "Alert";
