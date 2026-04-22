@@ -8,6 +8,7 @@ export class HiroAPIError extends Error {
     super(message);
     this.name = "HiroAPIError";
     this.status = status;
+    Object.setPrototypeOf(this, HiroAPIError.prototype);
   }
 }
 
