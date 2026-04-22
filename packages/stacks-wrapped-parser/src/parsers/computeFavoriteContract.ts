@@ -1,26 +1,30 @@
-import { RawTransaction } from "../types";
+import { isContractCall } from "../guards/isContractCall";
 
+/**
+ * Determines the contract the user interacted with most frequently.
+ * Ties are broken by alphabetical order of the contract identifier.
+ *
+ * @param txs - Array of raw transactions.
+ * @returns The identifier of the most frequent contract, or "None" if no contract calls found.
+ */
 export function computeFavoriteContract(txs: RawTransaction[]): string {
-  const contractCalls = txs.filter(
-    (tx) => tx.tx_type === "contract_call" && tx.contract_call
-  );
-
-  if (contractCalls.length === 0) return "None";
+  if (!Array.isArray(txs)) return "None";
 
   const counts = new Map<string, number>();
-  for (const tx of contractCalls) {
-    const contractId = tx.contract_call!.contract_id;
-    counts.set(contractId, (counts.get(contractId) ?? 0) + 1);
-  }
 
-  let maxId = "";
-  let maxCount = 0;
-  for (const [id, count] of counts) {
-    if (count > maxCount || (count === maxCount && id < maxId)) {
-      maxId = id;
-      maxCount = count;
+  for (const tx of txs) {
+    if (isContractCall(tx)) {
+      const { contract_id } = tx.contract_call;
+      counts.set(contract_id, (counts.get(contract_id) ?? 0) + 1);
     }
   }
 
-  return maxId;
+  if (counts.size === 0) return "None";
+
+  return Array.from(counts.entries()).reduce((favorite, [id, count]) => {
+    if (count > favorite.count || (count === favorite.count && id < favorite.id)) {
+      return { id, count };
+    }
+    return favorite;
+  }, { id: "", count: -1 }).id;
 }
