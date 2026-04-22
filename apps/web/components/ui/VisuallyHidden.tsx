@@ -1,22 +1,17 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ElementType } from "react";
+import { cn } from "@/lib/cn";
 
-export type VisuallyHiddenProps = HTMLAttributes<HTMLSpanElement>;
+interface VisuallyHiddenProps extends HTMLAttributes<HTMLElement> {
+  as?: ElementType;
+}
 
-export function VisuallyHidden({ style, ...rest }: VisuallyHiddenProps) {
+export function VisuallyHidden({ as: Component = "span", className, ...rest }: VisuallyHiddenProps) {
   return (
-    <span
-      style={{
-        position: "absolute",
-        width: 1,
-        height: 1,
-        padding: 0,
-        margin: -1,
-        overflow: "hidden",
-        clip: "rect(0, 0, 0, 0)",
-        whiteSpace: "nowrap",
-        border: 0,
-        ...style,
-      }}
+    <Component
+      className={cn(
+        "absolute w-[1px] h-[1px] p-0 -m-[1px] overflow-hidden clip-[rect(0,0,0,0)] whitespace-nowrap border-0",
+        className
+      )}
       {...rest}
     />
   );
