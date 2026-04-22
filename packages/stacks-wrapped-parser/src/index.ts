@@ -21,6 +21,11 @@ import { computeTotalFeesPaid } from "./parsers/computeTotalFeesPaid";
 import { computeFirstTransactionDate } from "./parsers/computeFirstTransactionDate";
 import { computeFavoriteContract } from "./parsers/computeFavoriteContract";
 import { computeBiggestSTXTransfer } from "./parsers/computeBiggestSTXTransfer";
+import { computeContractCallCount } from "./parsers/computeContractCallCount";
+import { computeUniqueContractsCount } from "./parsers/computeUniqueContractsCount";
+import { computeAverageFee } from "./parsers/computeAverageFee";
+import { computeSuccessRate } from "./parsers/computeSuccessRate";
+import { computeTokenTransferCount } from "./parsers/computeTokenTransferCount";
 
 export function computeWrappedStats(txs: RawTransaction[]): WrappedStats {
   return {
@@ -29,5 +34,10 @@ export function computeWrappedStats(txs: RawTransaction[]): WrappedStats {
     firstTransactionDate: computeFirstTransactionDate(txs),
     favoriteContract: computeFavoriteContract(txs),
     biggestSTXTransferSTX: computeBiggestSTXTransfer(txs),
+    contractCallCount: computeContractCallCount(txs),
+    uniqueContractsCount: computeUniqueContractsCount(txs),
+    averageFeeSTX: computeAverageFee(txs),
+    successRate: computeSuccessRate(txs),
+    tokenTransferCount: computeTokenTransferCount(txs),
   };
 }
