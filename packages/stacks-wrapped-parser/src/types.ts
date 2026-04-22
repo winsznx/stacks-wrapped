@@ -23,4 +23,9 @@ export interface WrappedStats {
   firstTransactionDate: string;
   favoriteContract: string;
   biggestSTXTransferSTX: number;
+  contractCallCount: number;
+  uniqueContractsCount: number;
+  averageFeeSTX: number;
+  successRate: number;
+  tokenTransferCount: number;
 }
