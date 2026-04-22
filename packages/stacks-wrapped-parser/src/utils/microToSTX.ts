@@ -1,5 +1,13 @@
+/**
+ * Converts micro-STX to STX units.
+ *
+ * @param microSTX - The amount in micro-STX (as string or number).
+ * @returns The amount in STX as a number.
+ */
 export function microToSTX(microSTX: string | number): number {
-  return Number(microSTX) / 1_000_000;
+  const value = Number(microSTX);
+  if (isNaN(value) || !isFinite(value)) return 0;
+  return value / 1_000_000;
 }
 
 export function formatSTX(stx: number): string {
