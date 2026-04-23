@@ -29,7 +29,7 @@ export function AddressInput({ onSubmit }: AddressInputProps) {
     <div className="address-input-container">
       <h2 className="address-input-title">Enter Your Stacks Address</h2>
       <p className="address-input-subtitle">
-        Connect your wallet or paste any Stacks mainnet address to generate your
+        Enter a Stacks address (SP...) or BNS name (.btc) to generate your
         Wrapped card.
       </p>
 
