@@ -1,17 +1,15 @@
+import { HTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
-export interface SkeletonProps {
-  className?: string;
-  width?: number | string;
-  height?: number | string;
-}
-
-export function Skeleton({ className, width, height }: SkeletonProps) {
+export function Skeleton({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn("skeleton", className)}
-      style={{ width, height }}
-      aria-hidden="true"
+      className={cn(
+        "animate-pulse rounded-md bg-white/5 relative overflow-hidden",
+        "after:absolute after:inset-0 after:-translate-x-full after:animate-[shimmer_2s_infinite] after:bg-gradient-to-r after:from-transparent after:via-white/5 after:to-transparent",
+        className
+      )}
+      {...rest}
     />
   );
 }
