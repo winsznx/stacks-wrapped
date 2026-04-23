@@ -1,71 +1,37 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Spinner } from "../ui/Spinner";
 
-const LOADING_STEPS = [
-  "Scanning transactions...",
-  "Computing fees...",
-  "Finding your favorite contract...",
-  "Calculating biggest transfer...",
-  "Locating your first transaction...",
-  "Building your Wrapped card...",
+const MESSAGES = [
+  "Fetching your Stacks transaction history...",
+  "Calculating total STX moved...",
+  "Analyzing contract interactions...",
+  "Finding your favorite protocol...",
+  "Almost ready for your 2024 reveal...",
 ];
 
-interface StatsLoaderProps {
-  isLoading: boolean;
-  error: string | null;
-}
-
-export function StatsLoader({ isLoading, error }: StatsLoaderProps) {
-  const [currentStep, setCurrentStep] = useState(0);
+export function StatsLoader() {
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (!isLoading) return;
-
-    setCurrentStep(0);
-    const interval = setInterval(() => {
-      setCurrentStep((prev) =>
-        prev < LOADING_STEPS.length - 1 ? prev + 1 : prev
-      );
-    }, 800);
-
-    return () => clearInterval(interval);
-  }, [isLoading]);
-
-  if (error) {
-    return (
-      <div className="stats-loader stats-loader-error">
-        <div className="stats-loader-terminal">
-          <span className="terminal-prompt">&gt;</span>
-          <span className="terminal-error">{error}</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (!isLoading) return null;
+    const timer = setInterval(() => {
+      setIndex((i) => (i + 1) % MESSAGES.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div className="stats-loader">
-      <div className="stats-loader-terminal">
-        {LOADING_STEPS.slice(0, currentStep + 1).map((step, i) => (
-          <div key={step} className="terminal-line">
-            <span className="terminal-prompt">&gt;</span>
-            <span
-              className={
-                i === currentStep ? "terminal-active" : "terminal-done"
-              }
-            >
-              {step}
-            </span>
-            {i < currentStep && (
-              <span className="terminal-check"> ✓</span>
-            )}
-            {i === currentStep && (
-              <span className="terminal-cursor">_</span>
-            )}
-          </div>
-        ))}
+    <div className="flex flex-col items-center justify-center p-12 gap-6 min-h-[400px]">
+      <div className="relative">
+        <Spinner size="lg" className="text-white/20" />
+        <Spinner size="lg" className="absolute inset-0 text-white animate-pulse" style={{ animationDuration: '3s' }} />
+      </div>
+      <div className="flex flex-col items-center gap-2">
+        <p className="text-xl font-medium text-white text-center animate-in fade-in slide-in-from-bottom-4 duration-700">
+          {MESSAGES[index]}
+        </p>
+        <p className="text-sm text-white/40">This might take a moment if you're an OG</p>
       </div>
     </div>
   );
