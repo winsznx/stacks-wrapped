@@ -76,7 +76,9 @@ export function useLeaderboard(): UseLeaderboardReturn {
       setRecentClaimers(claimers);
       setError(null);
     } catch (err) {
-      setError(getErrorMessage(err));
+      const msg = getErrorMessage(err);
+      setError(msg);
+      console.warn("[useLeaderboard] Poll failed:", msg);
     } finally {
       setIsLoading(false);
     }
