@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { openContractCall } from "@stacks/connect";
+import { openContractCall /* updated for v7 */ } from "@stacks/connect";
 import { PostConditionMode } from "@stacks/transactions";
 import { CONTRACT_DEPLOYER, CONTRACT_NAME } from "@/lib/constants";
 import { getNetwork } from "@/lib/contract-functions";
