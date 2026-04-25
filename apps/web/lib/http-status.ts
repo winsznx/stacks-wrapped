@@ -27,3 +27,5 @@ export function getStatusMessage(status: number): string {
   };
   return messages[status] ?? "An unexpected error occurred";
 }
+
+export const STACKS_ERR_RATE_LIMIT = 429;
