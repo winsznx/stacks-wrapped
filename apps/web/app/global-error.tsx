@@ -27,3 +27,5 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
     </html>
   );
 }
+
+// Recovery actions added
