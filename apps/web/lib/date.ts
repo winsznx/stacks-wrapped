@@ -1,27 +1,28 @@
-export function formatShortDate(isoDate: string): string {
-  const date = new Date(isoDate);
-  if (isNaN(date.getTime())) return "N/A";
+export function relativeTimeFromNow(date: Date): string {
+  const now = Date.now();
+  const diff = now - date.getTime();
+  const seconds = Math.floor(diff / 1000);
+
+  if (seconds < 60) return "just now";
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  if (days < 30) return `${days}d ago`;
+  const months = Math.floor(days / 30);
+  if (months < 12) return `${months}mo ago`;
+  return `${Math.floor(months / 12)}y ago`;
+}
+
+export function formatDate(date: Date): string {
   return date.toLocaleDateString("en-US", {
+    year: "numeric",
     month: "short",
     day: "numeric",
-    year: "numeric",
   });
 }
 
-export function formatLongDate(isoDate: string): string {
-  const date = new Date(isoDate);
-  if (isNaN(date.getTime())) return "N/A";
-  return date.toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
-export function daysBetween(startIso: string, endIso: string): number {
-  const start = new Date(startIso).getTime();
-  const end = new Date(endIso).getTime();
-  if (isNaN(start) || isNaN(end)) return 0;
-  return Math.floor((end - start) / (1000 * 60 * 60 * 24));
+export function isValidDate(value: unknown): value is Date {
+  return value instanceof Date && !isNaN(value.getTime());
 }
