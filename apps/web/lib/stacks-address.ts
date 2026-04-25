@@ -1,20 +1,16 @@
-const MAINNET_PREFIXES = ["SP", "SM"] as const;
-const TESTNET_PREFIXES = ["ST", "SN"] as const;
+import { validateStacksAddress } from "@stacks/transactions";
 
-export function isValidMainnetAddress(address: string): boolean {
-  if (typeof address !== "string") return false;
-  const trimmed = address.trim();
-  if (trimmed.length < 28 || trimmed.length > 41) return false;
-  return MAINNET_PREFIXES.some((prefix) => trimmed.startsWith(prefix));
+/**
+ * Validates a Stacks address using v7 transactions utility.
+ * @param address - The address to validate.
+ * @returns boolean indicating if the address is valid.
+ */
+export function isValidAddress(address: string): boolean {
+  if (!address) return false;
+  return validateStacksAddress(address);
 }
 
-export function isValidTestnetAddress(address: string): boolean {
-  if (typeof address !== "string") return false;
-  const trimmed = address.trim();
-  if (trimmed.length < 28 || trimmed.length > 41) return false;
-  return TESTNET_PREFIXES.some((prefix) => trimmed.startsWith(prefix));
-}
-
-export function isValidStacksAddress(address: string): boolean {
-  return isValidMainnetAddress(address) || isValidTestnetAddress(address);
+export function truncateAddress(address: string): string {
+  if (!address) return "";
+  return `${address.slice(0, 5)}...${address.slice(-5)}`;
 }
