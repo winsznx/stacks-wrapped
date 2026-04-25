@@ -1,45 +1,37 @@
 "use client";
+import { useState, useEffect, useCallback } from "react";
 
-import { useCallback, useEffect, useState } from "react";
-
-export function useLocalStorage<T>(
-  key: string,
-  initialValue: T
-): [T, (value: T) => void, () => void] {
-  const [storedValue, setStoredValue] = useState<T>(initialValue);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
+export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T | ((prev: T) => T)) => void] {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    if (typeof window === "undefined") return initialValue;
     try {
       const item = window.localStorage.getItem(key);
-      if (item !== null) setStoredValue(JSON.parse(item) as T);
+      return item ? (JSON.parse(item) as T) : initialValue;
     } catch {
-      setStoredValue(initialValue);
+      return initialValue;
     }
-  }, [key, initialValue]);
+  });
 
-  const setValue = useCallback(
-    (value: T) => {
-      setStoredValue(value);
-      if (typeof window === "undefined") return;
-      try {
-        window.localStorage.setItem(key, JSON.stringify(value));
-      } catch {
-        return;
+  const setValue = useCallback((value: T | ((prev: T) => T)) => {
+    setStoredValue((prev) => {
+      const next = value instanceof Function ? value(prev) : value;
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(key, JSON.stringify(next));
+        window.dispatchEvent(new StorageEvent("storage", { key, newValue: JSON.stringify(next) }));
       }
-    },
-    [key]
-  );
+      return next;
+    });
+  }, [key]);
 
-  const removeValue = useCallback(() => {
-    setStoredValue(initialValue);
-    if (typeof window === "undefined") return;
-    try {
-      window.localStorage.removeItem(key);
-    } catch {
-      return;
-    }
-  }, [key, initialValue]);
+  useEffect(() => {
+    const handler = (e: StorageEvent) => {
+      if (e.key === key && e.newValue) {
+        try { setStoredValue(JSON.parse(e.newValue) as T); } catch {}
+      }
+    };
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
+  }, [key]);
 
-  return [storedValue, setValue, removeValue];
+  return [storedValue, setValue];
 }
