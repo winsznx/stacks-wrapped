@@ -37,3 +37,5 @@ export function LeaderboardPageContent() {
     </main>
   );
 }
+
+// Improved data fetching types for v7
