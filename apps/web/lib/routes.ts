@@ -5,3 +5,5 @@ export const ROUTES = {
 } as const;
 
 export type AppRoute = typeof ROUTES[keyof typeof ROUTES];
+
+export const getWrappedRoute = (address: string) => `/wrapped/${address}`;
