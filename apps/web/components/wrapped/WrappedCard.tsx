@@ -76,3 +76,5 @@ export function WrappedCard({ stats, address }: WrappedCardProps) {
     </div>
   );
 }
+
+// Error fallback for image generation
