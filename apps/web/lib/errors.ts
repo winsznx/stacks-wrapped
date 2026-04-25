@@ -29,3 +29,5 @@ export function classifyError(error: unknown): ErrorCategory {
   if (isNetworkError(error)) return "network";
   return "unknown";
 }
+
+export enum ErrorCategory { NETWORK, CONTRACT, PARSER }
