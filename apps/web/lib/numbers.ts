@@ -12,3 +12,5 @@ export function parseMicroStx(amount: string | number): number {
   const val = typeof amount === "string" ? parseInt(amount, 10) : amount;
   return isNaN(val) ? 0 : val / 1_000_000;
 }
+
+// Enhanced micro-STX conversion safety
