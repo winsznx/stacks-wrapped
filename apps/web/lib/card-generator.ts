@@ -17,6 +17,8 @@ function drawRoundedRect(
   ctx.closePath();
 }
 
+const MAX_CANVAS_SIZE = 4096;
+
 export async function generateWrappedCardPNG(
   elementId: string
 ): Promise<Blob> {
