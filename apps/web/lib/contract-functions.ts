@@ -8,3 +8,5 @@ export const getDefaultOptions = () => ({
   network: getNetwork(),
   postConditionMode: PostConditionMode.Deny,
 });
+
+// Updated broadcast logic for v7
