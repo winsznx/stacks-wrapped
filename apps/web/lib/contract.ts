@@ -12,7 +12,8 @@ export function parseContractId(contractId: string): ParsedContractId | null {
 }
 
 export function buildContractId(address: string, name: string): string {
-  return `${address}.${name}`;
+  // Ensure standard formatting
+  return `${address.trim()}.${name.trim()}`;
 }
 
 export function isValidContractId(contractId: string): boolean {
