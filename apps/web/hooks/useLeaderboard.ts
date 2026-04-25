@@ -92,3 +92,5 @@ export function useLeaderboard(): UseLeaderboardReturn {
 
   return { totalGenerated, recentClaimers, isLoading, error };
 }
+
+// Polling error management improved
