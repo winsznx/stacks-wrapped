@@ -28,3 +28,5 @@ export function formatRelativeTime(blockHeight: number, currentBlockHeight: numb
   const daysAgo = Math.floor(hoursAgo / 24);
   return `${daysAgo}d ago`;
 }
+
+// Better timestamp formatting for Stacks blocks
