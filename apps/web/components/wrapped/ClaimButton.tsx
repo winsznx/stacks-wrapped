@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { openContractCall } from "@stacks/connect";
+import { PostConditionMode } from "@stacks/transactions";
 import { StacksMainnet } from "@stacks/network";
 import { CONTRACT_DEPLOYER, CONTRACT_NAME } from "@/lib/constants";
 
