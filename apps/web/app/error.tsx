@@ -33,3 +33,5 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
     </main>
   );
 }
+
+// Enhanced root error boundary UI
