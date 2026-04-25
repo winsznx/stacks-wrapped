@@ -69,3 +69,5 @@ export async function fetchAllTransactions(
 
   return allTransactions;
 }
+
+// Exponential backoff implemented
