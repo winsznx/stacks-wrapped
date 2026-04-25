@@ -8,3 +8,5 @@ export enum TransactionStatus {
 
 export const getTxVersion = (network: string) => 
   network === "mainnet" ? TransactionVersion.Mainnet : TransactionVersion.Testnet;
+
+// Aligned with v7 transaction types
