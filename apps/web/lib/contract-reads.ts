@@ -1,4 +1,4 @@
-import { fetchCallReadOnlyFunction, cvToJSON, cvToValue, uintCV, principalCV } from "@stacks/transactions";
+import { callReadOnlyFunction, cvToJSON, cvToValue, uintCV, principalCV } from "@stacks/transactions";
 import { CONTRACT_DEPLOYER, CONTRACT_NAME, STACKS_NETWORK, HIRO_API_BASE } from "./constants";
 
 const network = STACKS_NETWORK === "mainnet" ? "mainnet" : "testnet";
