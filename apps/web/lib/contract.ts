@@ -19,3 +19,5 @@ export function buildContractId(address: string, name: string): string {
 export function isValidContractId(contractId: string): boolean {
   return parseContractId(contractId) !== null;
 }
+
+// Refined contract identifier parsing
