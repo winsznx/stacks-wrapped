@@ -1,22 +1,17 @@
 "use client";
-
-import { useCallback, useEffect, useState } from "react";
+import { useState, useCallback, useRef } from "react";
 import { copyToClipboard } from "@/lib/clipboard";
 
-export function useCopyToClipboard(resetMs: number = 2000) {
+export function useCopyToClipboard(resetDelay = 2000): [boolean, (text: string) => Promise<void>] {
   const [copied, setCopied] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
-  useEffect(() => {
-    if (!copied) return;
-    const timer = setTimeout(() => setCopied(false), resetMs);
-    return () => clearTimeout(timer);
-  }, [copied, resetMs]);
+  const copy = useCallback(async (text: string) => {
+    const ok = await copyToClipboard(text);
+    setCopied(ok);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setCopied(false), resetDelay);
+  }, [resetDelay]);
 
-  const copy = useCallback(async (text: string): Promise<boolean> => {
-    const success = await copyToClipboard(text);
-    if (success) setCopied(true);
-    return success;
-  }, []);
-
-  return { copied, copy };
+  return [copied, copy];
 }
