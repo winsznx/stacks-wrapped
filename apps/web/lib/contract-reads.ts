@@ -1,44 +1,22 @@
-import {
-  callReadOnlyFunction,
-  cvToValue,
-  standardPrincipalCV,
-  ClarityType,
-} from "@stacks/transactions";
-import { StacksMainnet } from "@stacks/network";
-import { CONTRACT_DEPLOYER, CONTRACT_NAME } from "./constants";
+import { fetchCallReadOnlyFunction, cvToJSON } from "@stacks/transactions";
+import { StacksMainnet, StacksTestnet } from "@stacks/network";
+import { CONTRACT_DEPLOYER, CONTRACT_NAME, STACKS_NETWORK } from "./constants";
 
-const network = new StacksMainnet();
+const network = STACKS_NETWORK === "mainnet" ? new StacksMainnet() : new StacksTestnet();
 
-export async function getTotalWrapped(): Promise<number> {
-  const result = await callReadOnlyFunction({
-    contractAddress: CONTRACT_DEPLOYER,
-    contractName: CONTRACT_NAME,
-    functionName: "get-total-wrapped",
-    functionArgs: [],
-    network,
-    senderAddress: CONTRACT_DEPLOYER,
-  });
-
-  if (result.type === ClarityType.ResponseOk) {
-    return Number(cvToValue(result.value));
+export async function getRegistryData(address: string) {
+  try {
+    const response = await fetchCallReadOnlyFunction({
+      contractAddress: CONTRACT_DEPLOYER,
+      contractName: CONTRACT_NAME,
+      functionName: "get-user-data",
+      functionArgs: [], // Add CV args if needed
+      network,
+      senderAddress: address,
+    });
+    return cvToJSON(response);
+  } catch (error) {
+    console.error("Error fetching registry data:", error);
+    return null;
   }
-
-  throw new Error("Unexpected response from get-total-wrapped");
-}
-
-export async function hasClaimed(address: string): Promise<boolean> {
-  const result = await callReadOnlyFunction({
-    contractAddress: CONTRACT_DEPLOYER,
-    contractName: CONTRACT_NAME,
-    functionName: "has-claimed",
-    functionArgs: [standardPrincipalCV(address)],
-    network,
-    senderAddress: CONTRACT_DEPLOYER,
-  });
-
-  if (result.type === ClarityType.ResponseOk) {
-    return Boolean(cvToValue(result.value));
-  }
-
-  throw new Error("Unexpected response from has-claimed");
 }
