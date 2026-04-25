@@ -16,6 +16,7 @@ export function useWrappedStats(address: string): UseWrappedStatsReturn {
   const [stats, setStats] = useState<WrappedStats | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
   const lastFetchedAddress = useRef<string>("");
   const abortControllerRef = useRef<AbortController | null>(null);
 
