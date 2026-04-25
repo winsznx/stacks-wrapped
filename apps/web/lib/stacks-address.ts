@@ -1,4 +1,5 @@
 import { validateStacksAddress } from "@stacks/transactions";
+import { validateStacksAddress } from "@stacks/transactions";
 
 /**
  * Validates a Stacks address using v7 transactions utility.
