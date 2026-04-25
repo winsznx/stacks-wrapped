@@ -25,6 +25,20 @@ interface V2TransactionsResponse {
   results: V2TransactionResult[];
 }
 
+async function fetchWithRetry(url: string, signal?: AbortSignal, retries = 3): Promise<Response> {
+  for (let attempt = 0; attempt < retries; attempt++) {
+    try {
+      const response = await fetch(url, { signal });
+      if (response.ok || response.status < 500) return response;
+    } catch (err) {
+      if (signal?.aborted) throw err;
+      if (attempt === retries - 1) throw err;
+    }
+    await new Promise(r => setTimeout(r, Math.pow(2, attempt) * 1000));
+  }
+  return fetch(url, { signal });
+}
+
 export async function fetchAllTransactions(
   address: string,
   signal?: AbortSignal
@@ -35,7 +49,7 @@ export async function fetchAllTransactions(
     const offset = page * TX_FETCH_LIMIT;
     const url = `${HIRO_API_BASE}/extended/v2/addresses/${address}/transactions?limit=${TX_FETCH_LIMIT}&offset=${offset}`;
 
-    const response = await fetch(url, { signal });
+    const response = await fetchWithRetry(url, signal);
 
     if (!response.ok) {
       throw new HiroAPIError(
