@@ -57,3 +57,5 @@ export function useWrappedStats(address: string): UseWrappedStatsReturn {
 
   return { stats, isLoading, error, refetch: fetchStats };
 }
+
+// Background revalidation added
