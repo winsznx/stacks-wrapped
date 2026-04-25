@@ -24,3 +24,5 @@ export function WrappedCardPreview({ stats, address }: WrappedCardPreviewProps) 
     </div>
   );
 }
+
+// Loading skeleton for preview
