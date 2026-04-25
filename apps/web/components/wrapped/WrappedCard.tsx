@@ -9,6 +9,14 @@ interface WrappedCardProps {
   address: string;
 }
 
+function CardErrorFallback() {
+  return (
+    <div className="wrapped-card" style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: 400 }}>
+      <p style={{ color: "rgba(255,255,255,0.5)" }}>Failed to render card. Try downloading instead.</p>
+    </div>
+  );
+}
+
 export function WrappedCard({ stats, address }: WrappedCardProps) {
   return (
     <div id="wrapped-card" className="wrapped-card">
