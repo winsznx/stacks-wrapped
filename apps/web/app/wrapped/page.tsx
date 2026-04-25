@@ -28,3 +28,5 @@ export const metadata: Metadata = {
 export default function WrappedPage() {
   return <WrappedPageContent />;
 }
+
+// Refactored for v7 network objects
