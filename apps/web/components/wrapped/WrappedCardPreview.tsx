@@ -8,6 +8,8 @@ interface WrappedCardPreviewProps {
   address: string;
 }
 
+import { Skeleton } from "@/components/ui/Skeleton";
+
 export function WrappedCardPreview({ stats, address }: WrappedCardPreviewProps) {
   return (
     <div className="wrapped-card-preview-container">
