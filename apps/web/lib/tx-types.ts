@@ -1,9 +1,10 @@
-export const TX_TYPES = {
-  contractCall: "contract_call",
-  tokenTransfer: "token_transfer",
-  smartContract: "smart_contract",
-  coinbase: "coinbase",
-  poisonMicroblock: "poison_microblock",
-} as const;
+import { TransactionVersion } from "@stacks/transactions";
 
-export type TxType = typeof TX_TYPES[keyof typeof TX_TYPES];
+export enum TransactionStatus {
+  SUCCESS = "success",
+  PENDING = "pending",
+  FAILED = "failed",
+}
+
+export const getTxVersion = (network: string) => 
+  network === "mainnet" ? TransactionVersion.Mainnet : TransactionVersion.Testnet;
