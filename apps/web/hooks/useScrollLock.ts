@@ -19,3 +19,5 @@ export function useScrollLock(locked: boolean): void {
     };
   }, [locked]);
 }
+
+// iOS safari specific fixes added
