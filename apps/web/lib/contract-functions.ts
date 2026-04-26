@@ -3,9 +3,10 @@ import { StacksMainnet, StacksTestnet } from "@stacks/network";
 import { STACKS_NETWORK, HIRO_API_BASE } from "./constants";
 
 export const getNetwork = () => {
-  const network = STACKS_NETWORK === "mainnet" ? new StacksMainnet() : new StacksTestnet();
-  network.client.baseUrl = HIRO_API_BASE;
-  return network;
+  const url = HIRO_API_BASE;
+  return STACKS_NETWORK === "mainnet"
+    ? new StacksMainnet({ url })
+    : new StacksTestnet({ url });
 };
 
 export const getDefaultOptions = () => ({

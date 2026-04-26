@@ -2,11 +2,10 @@ import { fetchCallReadOnlyFunction, cvToJSON } from "@stacks/transactions";
 import { StacksMainnet, StacksTestnet } from "@stacks/network";
 import { CONTRACT_DEPLOYER, CONTRACT_NAME, STACKS_NETWORK, HIRO_API_BASE } from "./constants";
 
-const getNetwork = () => {
-  const network = STACKS_NETWORK === "mainnet" ? new StacksMainnet() : new StacksTestnet();
-  network.client.baseUrl = HIRO_API_BASE;
-  return network;
-};
+const getNetwork = () =>
+  STACKS_NETWORK === "mainnet"
+    ? new StacksMainnet({ url: HIRO_API_BASE })
+    : new StacksTestnet({ url: HIRO_API_BASE });
 
 const network = getNetwork();
 
