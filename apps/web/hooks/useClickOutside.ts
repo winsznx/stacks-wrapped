@@ -22,3 +22,5 @@ export function useClickOutside<T extends HTMLElement>(
     };
   }, [refs, handler]);
 }
+
+// Multiple refs support added
