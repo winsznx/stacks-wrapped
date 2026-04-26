@@ -7,7 +7,8 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { AppConfig, UserSession } from "@stacks/connect";
+import { AppConfig, UserSession, showConnect } from "@stacks/connect";
+import { STACKS_NETWORK } from "@/lib/constants";
 
 interface WalletContextValue {
   userSession: UserSession;
@@ -40,9 +41,11 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     if (userSession.isUserSignedIn()) {
       const userData = userSession.loadUserData();
       const address =
-        userData.profile?.stxAddress?.mainnet ?? null;
+        STACKS_NETWORK === "mainnet"
+          ? userData.profile?.stxAddress?.mainnet
+          : userData.profile?.stxAddress?.testnet ?? userData.profile?.stxAddress?.mainnet;
       setIsConnected(true);
-      setUserAddress(address);
+      setUserAddress(address ?? null);
     }
   }, []);
 
@@ -55,9 +58,11 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       onFinish: () => {
         const userData = userSession.loadUserData();
         const address =
-          userData.profile?.stxAddress?.mainnet ?? null;
+          STACKS_NETWORK === "mainnet"
+            ? userData.profile?.stxAddress?.mainnet
+            : userData.profile?.stxAddress?.testnet ?? userData.profile?.stxAddress?.mainnet;
         setIsConnected(true);
-        setUserAddress(address);
+        setUserAddress(address ?? null);
       },
       onCancel: () => {},
       userSession,

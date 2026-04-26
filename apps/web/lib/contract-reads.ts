@@ -1,8 +1,14 @@
 import { fetchCallReadOnlyFunction, cvToJSON } from "@stacks/transactions";
 import { StacksMainnet, StacksTestnet } from "@stacks/network";
-import { CONTRACT_DEPLOYER, CONTRACT_NAME, STACKS_NETWORK } from "./constants";
+import { CONTRACT_DEPLOYER, CONTRACT_NAME, STACKS_NETWORK, HIRO_API_BASE } from "./constants";
 
-const network = STACKS_NETWORK === "mainnet" ? new StacksMainnet() : new StacksTestnet();
+const getNetwork = () => {
+  const network = STACKS_NETWORK === "mainnet" ? new StacksMainnet() : new StacksTestnet();
+  network.client.baseUrl = HIRO_API_BASE;
+  return network;
+};
+
+const network = getNetwork();
 
 export async function getRegistryData(address: string) {
   try {
