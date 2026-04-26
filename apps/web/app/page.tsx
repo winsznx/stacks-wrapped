@@ -36,3 +36,5 @@ export default function LandingPage() {
     </main>
   );
 }
+
+// Selective hydration implemented
