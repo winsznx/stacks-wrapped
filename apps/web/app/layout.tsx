@@ -36,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+<link rel="preconnect" href="https://api.mainnet.hiro.so" />
         <link rel="preconnect" href="https://api.mainnet.hiro.so" />
         <link rel="dns-prefetch" href="https://api.mainnet.hiro.so" />
         <meta
