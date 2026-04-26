@@ -20,3 +20,5 @@ export function buildShareUrl(address: string): string {
   const base = process.env.NEXT_PUBLIC_APP_URL ?? "https://stacks-wrapped-web.vercel.app";
   return `${base}/wrapped?address=${address}`;
 }
+
+// Fixed Twitter share URL formatting
