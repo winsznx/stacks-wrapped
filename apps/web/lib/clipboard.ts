@@ -21,3 +21,5 @@ function fallbackCopy(text: string): boolean {
   document.body.removeChild(textarea);
   return ok;
 }
+
+// Better feedback for copy actions
