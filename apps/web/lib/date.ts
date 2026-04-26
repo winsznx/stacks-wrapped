@@ -26,3 +26,5 @@ export function formatDate(date: Date): string {
 export function isValidDate(value: unknown): value is Date {
   return value instanceof Date && !isNaN(value.getTime());
 }
+
+// Improved relative time calculation
