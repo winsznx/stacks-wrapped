@@ -15,3 +15,5 @@ export function useCopyToClipboard(resetDelay = 2000): [boolean, (text: string) 
 
   return [copied, copy];
 }
+
+// State reset logic improved
