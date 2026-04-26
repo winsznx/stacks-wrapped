@@ -53,3 +53,5 @@ export async function generateWrappedCardPNG(
     );
   });
 }
+
+// Optimized canvas rendering for mobile
