@@ -12,3 +12,5 @@ export function formatCompactNumber(value: number): string {
 export function formatPercentage(value: number): string {
   return value.toFixed(2) + "%";
 }
+
+export const formatCurrency = (val: number) => `$${val.toFixed(2)}`;
