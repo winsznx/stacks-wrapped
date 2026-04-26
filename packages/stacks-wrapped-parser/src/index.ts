@@ -38,6 +38,6 @@ export function computeWrappedStats(txs: RawTransaction[]): WrappedStats {
     uniqueContractsCount: computeUniqueContractsCount(txs),
     averageFeeSTX: computeAverageFee(txs),
     successRate: computeSuccessRate(txs),
-    tokenTransferCount: computeTokenTransferCount(txs),
+    tokenTransferCount: computeTokenTransferCount(txs).total,
   };
 }

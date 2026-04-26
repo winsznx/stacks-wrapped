@@ -1,3 +1,4 @@
+import { RawTransaction } from "../types";
 import { isContractCall } from "../guards/isContractCall";
 
 /**
