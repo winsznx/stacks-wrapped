@@ -30,11 +30,11 @@ importers:
         specifier: ^7.0.0
         version: 7.10.2
       '@stacks/network':
-        specifier: ^6.0.0
-        version: 6.17.0
+        specifier: ^7.0.0
+        version: 7.3.1
       '@stacks/transactions':
-        specifier: ^6.0.0
-        version: 6.17.0
+        specifier: ^7.0.0
+        version: 7.4.0
       '@vercel/og':
         specifier: ^0.11.1
         version: 0.11.1
