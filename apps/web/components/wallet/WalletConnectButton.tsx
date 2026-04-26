@@ -28,3 +28,5 @@ export function WalletConnectButton() {
     </button>
   );
 }
+
+// Dynamic import for heavy Connect library
