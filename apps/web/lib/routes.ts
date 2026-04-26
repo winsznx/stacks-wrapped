@@ -1,8 +1,7 @@
 export const ROUTES = {
-  home: "/",
-  wrapped: "/wrapped",
-  leaderboard: "/leaderboard",
-  ogImage: "/api/og",
+  HOME: "/",
+  WRAPPED: (address: string) => `/wrapped?address=${address}`,
+  LEADERBOARD: "/leaderboard",
 } as const;
 
-export type Route = typeof ROUTES[keyof typeof ROUTES];
+export type AppRoute = typeof ROUTES[keyof typeof ROUTES];
