@@ -30,3 +30,6 @@
 - Initial release with Wrapped card generation
 - Leaderboard with real-time polling
 - Clarity smart contract for on-chain claims
+
+## [1.0.0] - 2026-04-30
+- Full modernization sprint complete.
