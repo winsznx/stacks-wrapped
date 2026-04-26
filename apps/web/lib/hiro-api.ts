@@ -1,5 +1,4 @@
 import { RawTransaction } from "@winsznx/stacks-wrapped-parser";
-import { StacksMainnet, StacksTestnet } from "@stacks/network";
 import { HIRO_API_BASE, TX_FETCH_LIMIT, TX_MAX_PAGES } from "./constants";
 
 export class HiroAPIError extends Error {

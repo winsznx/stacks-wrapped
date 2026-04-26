@@ -18,7 +18,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
     <main className="error-page">
       <div className="error-page-content">
         <h1 className="error-page-title">Something went wrong</h1>
-        <Alert tone="error">{error.message}</Alert>
+        <Alert variant="error">{error.message}</Alert>
         <Button onClick={reset}>Try again</Button>
       </div>
     </main>

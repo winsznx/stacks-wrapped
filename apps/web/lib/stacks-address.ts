@@ -10,6 +10,9 @@ export function isValidAddress(address: string): boolean {
   return validateStacksAddress(address);
 }
 
+/** Alias used by components */
+export const isValidStacksAddress = isValidAddress;
+
 export function truncateAddress(address: string): string {
   if (!address) return "";
   return `${address.slice(0, 5)}...${address.slice(-5)}`;
