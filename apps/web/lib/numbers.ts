@@ -1,21 +1,14 @@
-export function formatCompact(value: number): string {
-  return Intl.NumberFormat("en-US", {
-    notation: "compact",
-    maximumFractionDigits: 2,
-  }).format(value);
-}
-
-export function formatInteger(value: number): string {
-  return Intl.NumberFormat("en-US").format(Math.round(value));
-}
-
-export function formatDecimal(value: number, fractionDigits: number = 2): string {
+/**
+ * Safe conversion and formatting for Stacks numbers.
+ */
+export function toFixed(value: number, decimals: number = 6): string {
   return value.toLocaleString("en-US", {
-    minimumFractionDigits: fractionDigits,
-    maximumFractionDigits: fractionDigits,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: decimals,
   });
 }
 
-export function clamp(value: number, min: number, max: number): number {
-  return Math.min(Math.max(value, min), max);
+export function parseMicroStx(amount: string | number): number {
+  const val = typeof amount === "string" ? parseInt(amount, 10) : amount;
+  return isNaN(val) ? 0 : val / 1_000_000;
 }
