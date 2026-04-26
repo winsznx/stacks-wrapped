@@ -10,3 +10,5 @@ export { useScrollLock } from "./useScrollLock";
 export { useIsomorphicLayoutEffect } from "./useIsomorphicLayoutEffect";
 export { useWrappedStats } from "./useWrappedStats";
 export { useLeaderboard } from "./useLeaderboard";
+
+export * from "./useMounted";
