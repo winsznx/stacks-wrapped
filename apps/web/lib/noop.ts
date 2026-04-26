@@ -8,3 +8,5 @@ export async function asyncNoop(): Promise<void> {}
 export function identity<T>(value: T): T {
   return value;
 }
+
+export const noop = () => {};
