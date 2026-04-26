@@ -11,3 +11,5 @@ export function useMounted(): boolean {
 
   return mounted;
 }
+
+// Hydration refactor for Next.js 14
