@@ -128,3 +128,5 @@ export async function GET() {
     }
   );
 }
+
+// Optimized font loading for Edge
