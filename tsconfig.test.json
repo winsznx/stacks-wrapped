@@ -6,3 +6,5 @@
   },
   "include": ["tests/**/*.ts"]
 }
+
+// Align test types
