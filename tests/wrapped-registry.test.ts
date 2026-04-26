@@ -20,3 +20,5 @@ describe("wrapped-registry", () => {
     expect(isValid("INVALID")).toBe(false);
   });
 });
+
+// Expanded coverage
