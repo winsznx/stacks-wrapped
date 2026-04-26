@@ -37,3 +37,6 @@ pnpm dev
 ## License
 
 MIT
+
+## Development Onboarding
+Follow these steps to get started...
