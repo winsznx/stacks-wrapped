@@ -13,3 +13,5 @@ export { isValidAddress, isValidStacksAddress, truncateAddress } from "./stacks-
 export { ROUTES } from "./routes";
 export { sanitizePath, getAbsoluteUrl } from "./url";
 export { toFixed, parseMicroStx } from "./numbers";
+
+export * from "./errors";
