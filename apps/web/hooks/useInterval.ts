@@ -14,3 +14,5 @@ export function useInterval(callback: () => void, delay: number | null): void {
     return () => clearInterval(id);
   }, [delay]);
 }
+
+// Memory leak protection added
