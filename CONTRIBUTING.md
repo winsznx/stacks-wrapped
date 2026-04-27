@@ -1,41 +1,33 @@
-# Contributing
+# Contributing to Stacks Wrapped
 
-Thanks for your interest in contributing to Stacks Wrapped.
+## Development Setup
 
-## Getting Started
-
-```bash
+\`\`\`bash
 git clone https://github.com/winsznx/stacks-wrapped.git
 cd stacks-wrapped
 pnpm install
-cp apps/web/.env.example apps/web/.env.local
-```
+pnpm dev
+\`\`\`
 
-## Workflow
+## Commit Convention
 
-1. Create a branch from `main`.
-2. Make focused, atomic commits using [Conventional Commits](https://www.conventionalcommits.org/).
-3. Run `pnpm build` and `pnpm test` before pushing.
-4. Open a pull request with a clear description.
+We use [Conventional Commits](https://conventionalcommits.org):
+- \`feat:\` new feature
+- \`fix:\` bug fix
+- \`refactor:\` code change that neither fixes a bug nor adds a feature
+- \`docs:\` documentation
+- \`chore:\` maintenance
 
-## Commit Types
+## Testing
 
-- `feat` - new functionality
-- `fix` - bug fix
-- `refactor` - change that neither adds a feature nor fixes a bug
-- `test` - add or update tests
-- `chore` - tooling, build, config changes
-- `style` - formatting, whitespace, CSS-only changes
-- `docs` - documentation only
+\`\`\`bash
+pnpm test          # Run all tests
+pnpm build         # Verify production build
+\`\`\`
 
-## Code Style
+## Pull Requests
 
-- TypeScript strict mode is enabled and non-negotiable.
-- No `any` without justification. Prefer `unknown`.
-- Reach for `cn()` from `@/lib/cn` when conditionally composing classNames.
-- Export from the nearest `index.ts` barrel where one exists.
-
-## Smart Contract Changes
-
-Run `clarinet check` after any change to `contracts/*.clar`.
-Run `pnpm test` to execute the contract test suite.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes (one logical change per commit)
+4. Submit a PR with a clear description
