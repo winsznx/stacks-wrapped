@@ -1,3 +1,7 @@
+;; Stacks Wrapped Registry
+;; Records on-chain claims for Wrapped cards.
+;; Each address can claim exactly once per season.
+
 ;; wrapped-registry.clar
 ;; Stacks Wrapped - on-chain participation registry
 ;; Network: Mainnet
