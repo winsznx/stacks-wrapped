@@ -1,3 +1,4 @@
+# Contract configuration for Stacks Wrapped
 [project]
 name = "stacks-wrapped"
 description = "On-chain Wrapped card participation registry for Stacks"
