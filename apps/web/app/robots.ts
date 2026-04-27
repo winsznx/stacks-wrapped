@@ -1,9 +1,20 @@
 import type { MetadataRoute } from "next";
-import { APP_URL } from "@/lib/constants";
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://stacks-wrapped-web.vercel.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [{ userAgent: "*", allow: "/" }],
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/_next/"],
+      },
+      {
+        userAgent: "GPTBot",
+        disallow: "/",
+      },
+    ],
     sitemap: `${APP_URL}/sitemap.xml`,
   };
 }
