@@ -1,16 +1,8 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "lib": ["ES2020", "DOM"],
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "types": ["vitest/globals"],
+    "isolatedModules": true
   },
-  "include": ["tests/**/*.ts", "apps/web/lib/**/*.ts", "packages/stacks-wrapped-parser/src/**/*.ts"],
-  "exclude": ["node_modules", "dist", ".next"]
+  "include": ["tests/**/*.ts"]
 }
