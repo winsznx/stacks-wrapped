@@ -36,6 +36,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://api.mainnet.hiro.so" />
+        <link rel="dns-prefetch" href="https://api.mainnet.hiro.so" />
         <meta
           name="talentapp:project_verification"
           content="e428c044a0f0f246ff3b7e6ab735674dd07b314e89861d35512b89582d8a9809814d5300679ac64b5e06f76f6c771d09aecb5d1c98f880caa4099844067fdc6b"
