@@ -1,12 +1,26 @@
 import type { MetadataRoute } from "next";
-import { APP_URL } from "@/lib/constants";
-import { ROUTES } from "@/lib/routes";
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://stacks-wrapped-web.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   return [
-    { url: `${APP_URL}${ROUTES.home}`, lastModified: now, priority: 1 },
-    { url: `${APP_URL}${ROUTES.wrapped}`, lastModified: now, priority: 0.9 },
-    { url: `${APP_URL}${ROUTES.leaderboard}`, lastModified: now, priority: 0.8 },
+    {
+      url: APP_URL,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    {
+      url: `${APP_URL}/wrapped`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${APP_URL}/leaderboard`,
+      lastModified: new Date(),
+      changeFrequency: "hourly",
+      priority: 0.8,
+    },
   ];
 }
