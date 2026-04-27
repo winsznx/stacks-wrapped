@@ -1,5 +1,8 @@
 import { ImageResponse } from "@vercel/og";
 
+// Cache OG images for 1 hour to reduce edge compute
+export const revalidate = 3600;
+
 export const runtime = "edge";
 
 const fontPromise = fetch(
