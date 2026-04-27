@@ -3,6 +3,7 @@
 import { useWallet } from "./WalletProvider";
 import { truncateAddress } from "@/lib/format";
 
+/** Wallet connect button with deferred heavy import loading */
 export function WalletConnectButton() {
   const { isConnected, userAddress, connectWallet, disconnectWallet } =
     useWallet();
