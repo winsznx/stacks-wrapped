@@ -10,7 +10,9 @@
     "publish:parser": "cd packages/stacks-wrapped-parser && pnpm publish --access public",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "clarinet check"
+    "check": "clarinet check",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean"
   },
   "devDependencies": {
     "@stacks/clarinet-sdk": "^3.16.0",
