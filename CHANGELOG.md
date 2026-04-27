@@ -1,26 +1,32 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
-
-## [Unreleased]
+## [1.1.0] - 2025-01-15
 
 ### Added
-- UI primitive component library (Button, Input, Spinner, Skeleton, Badge, Alert, Card, Label, Divider, EmptyState, ExternalLink, VisuallyHidden)
-- Custom React hooks (useDebounce, useMediaQuery, useClickOutside, useLocalStorage, useCopyToClipboard, useInterval, useMounted, usePrevious, useScrollLock)
-- Shared library utilities (cn, URL builders, share helpers, stacks address validation, clipboard, time/date formatting)
-- Parser additions (computeContractCallCount, computeUniqueContractsCount, computeAverageFee, computeSuccessRate, computeTokenTransferCount, groupByType, isValidTransaction)
-- Parser type guards (isContractCall, isTokenTransfer)
-- PWA manifest, sitemap, and robots.txt generators
-- Custom 404, route error boundary, and global error boundary
-- Security headers middleware
-- Unit test coverage for parsers and lib utilities
+- Exponential backoff for Hiro API retries
+- Cross-tab localStorage synchronization
+- Comprehensive security headers via middleware
+- Error classification system with category-aware UI
+- Versioned storage keys to prevent data conflicts
+- Intl-based currency and number formatting
+- iOS Safari scroll lock fix
+- Fallback clipboard mechanism for older browsers
 
-## [1.0.0] - 2026-04-14
+### Changed
+- Migrated to Stacks.js v7 network API
+- Refactored all hooks for strict generic typing
+- Centralized utility exports via barrel file
+- Improved OG image caching with revalidation
+
+### Fixed
+- Transaction signing version mismatch
+- Floating-point precision in fee calculations
+- Memory leaks in useInterval and useCopyToClipboard
+- Missing RawTransaction import in parser
+
+## [1.0.0] - 2024-12-01
 
 ### Added
-- Initial release
-- Next.js 14 web app with wallet connect, card generation, leaderboard
-- Clarity 5 smart contract wrapped-registry.clar
-- @winsznx/stacks-wrapped-parser npm package
+- Initial release with Wrapped card generation
+- Leaderboard with real-time polling
+- Clarity smart contract for on-chain claims
